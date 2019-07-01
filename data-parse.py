@@ -39,7 +39,7 @@ class_descriptions = {}
 images = {}
 
 print("Reading class descriptions.")
-with open("resource/challenge-2019-classes-description-500.csv", "r") as f:
+with open("resource/challenge-2019-classes-description-500.csv", "r", encoding="utf-8") as f:
 	lines = f.readlines()
 	for l in lines:
 		values = l.split(",")
@@ -47,7 +47,7 @@ with open("resource/challenge-2019-classes-description-500.csv", "r") as f:
 print(str(len(class_descriptions)) + " class descriptions read.")
 
 print("Reading images.")
-with open("resource/train-images-boxable-with-rotation.csv", "r") as f:
+with open("resource/train-images-boxable-with-rotation.csv", "r", encoding="utf-8") as f:
 	# Skips first line, which are just headers.
 	f.readline()
 
@@ -61,13 +61,14 @@ with open("resource/train-images-boxable-with-rotation.csv", "r") as f:
 			images[tokens[0]] = Image(tokens[2], int(tokens[-4]), tokens[0])
 
 		except Exception as e:
+			print(e)
 			print("Error reading images on line " + str(len(images)))
 			continue
 
 	print(str(len(images)) + " images read from file.")
 
 print("Reading objects and boundary boxes.")
-with open("resource/challenge-2019-train-detection-bbox.csv", "r") as f:
+with open("resource/challenge-2019-train-detection-bbox.csv", "r", encoding="utf-8") as f:
 	lines = f.readlines()
 
 	key_errors = 0
